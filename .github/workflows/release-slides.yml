@@ -1,0 +1,58 @@
+name: Release slides
+
+# Every push to main exports the deck to PDF and a static HTML site, then
+# publishes both as a new GitHub Release.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-slides
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # `slidev export` renders the PDF with Playwright's Chromium, which isn't a
+      # dependency of the deck itself, so install it for this run only.
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save playwright-chromium
+          npx playwright install --with-deps chromium
+
+      - name: Export PDF
+        run: npx slidev export slides.md --output sal-slides.pdf --timeout 60000 --wait 1500
+
+      - name: Build HTML
+        run: |
+          npx slidev build slides.md --out dist
+          cd dist && zip -qr ../sal-slides-html.zip .
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="slides-$(date -u +%Y-%m-%d)-${GITHUB_SHA::7}"
+          gh release create "$tag" sal-slides.pdf sal-slides-html.zip \
+            --title "Slides $(date -u +%Y-%m-%d) (${GITHUB_SHA::7})" \
+            --notes "Automated export of \`slides.md\` at ${GITHUB_SHA}.
+
+          - \`sal-slides.pdf\`: the deck as a PDF
+          - \`sal-slides-html.zip\`: the built HTML deck; unzip and serve the folder (e.g. \`npx serve\`)" \
+            --target "$GITHUB_SHA" \
+            --latest

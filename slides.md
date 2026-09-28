@@ -53,7 +53,7 @@ the whole talk.
 <div class="feature-row">
 <div class="icon-badge"><carbon:compare /></div>
 <div>
-<h3>Semantic definitions for properly integrating data into other research</h3>
+<h3>Semantic definitions for properly integrating data</h3>
 <p><strong>SAL:</strong> Every term is linked to a standardized RDF vocabulary</p>
 </div>
 </div>
@@ -95,7 +95,7 @@ reach, sits within a watershed. That's a graph — geometry is just another edge
 
 ---
 
-# Graphs have unique advantages over relational databases for geospatial data
+# Graphs can have advantages over relational databases for geospatial data
 
 <div class="grid grid-cols-3 gap-6 mt-14">
 
@@ -107,14 +107,14 @@ reach, sits within a watershed. That's a graph — geometry is just another edge
 
 <div class="card">
 <div class="icon-badge"><carbon:link /></div>
-<h3>Links across organizations</h3>
+<h3>Semantics across organizations</h3>
 <p>IRIs and Ontologies are key parts of the graph. Common IRIs allow for cross-organization linking</p>
 </div>
 
 <div class="card">
-<div class="icon-badge"><carbon:location /></div>
-<h3>Space is just another edge</h3>
-<p>GeoSPARQL answers topology and semantics in one query.</p>
+<div class="icon-badge"><carbon:flow-data /></div>
+<h3>Schema grows without migrations</h3>
+<p>A new property or relationship is just more triples. No <code>ALTER TABLE</code>, no redesigned joins.</p>
 </div>
 
 </div>
@@ -132,30 +132,30 @@ audience: linking across organizations without agreeing on a schema.
 
 <div class="card warn">
 <span class="num">01</span>
-<div class="icon-badge"><carbon:locked /></div>
-<h3>Lock-in</h3>
-<p>Slight deviations from the spec, custom indices, or engines that weren't entirely open source</p>
+<div class="icon-badge"><carbon:chart-line-smooth /></div>
+<h3>Shortcomings in Tooling</h3>
+<p>Single-node RDF stores, slow load times, lack of developer tooling, spatial as an afterthought.</p>
 </div>
 
 <div class="card warn">
 <span class="num">02</span>
-<div class="icon-badge"><carbon:chart-line-smooth /></div>
-<h3>Tooling that didn't scale</h3>
-<p>Single-node RDF stores, slow load times, lack of developer tooling, spatial as an afterthought.</p>
+<div class="icon-badge"><carbon:locked /></div>
+<h3>Lock-in</h3>
+<p>Slight deviations from specs, custom indices, or engines that weren't entirely open source</p>
 </div>
 
 <div class="card warn">
 <span class="num">03</span>
 <div class="icon-badge"><carbon:data-base /></div>
 <h3>Engine welded to the store</h3>
-<p>Many relation engines can be queried via Spark, Trino, or DuckDB at the same time. Graphs couldn't</p>
+<p>Many relation engines can be queried via Spark, Trino, or DuckDB at the same time. Graphs couldn't do this.</p>
 </div>
 
 </div>
 
 <!--
-Don't name every triple store. The pattern is the point: closed format,
-doesn't scale, engine and storage are one inseparable product.
+Don't name every triple store. The pattern is the point: doesn't scale,
+closed format, engine and storage are one inseparable product.
 The idea — linked, semantic data — was right; the infrastructure wasn't.
 -->
 
@@ -251,7 +251,7 @@ and filters on them are fast.
 
 <div class="flow-node">
 <div class="icon-badge"><carbon:logo-git /></div>
-<h3>RDF in Git</h3>
+<h3>Project source in Git</h3>
 <p>The source of truth</p>
 </div>
 
@@ -264,7 +264,7 @@ and filters on them are fast.
 <div class="flow-node">
 <div class="icon-badge"><carbon:data-table /></div>
 <h3>Iceberg table</h3>
-<p>Each build produces a snapshot in the table, linking to the git commit.</p>
+<p>Each build produces a snapshot in the table, linking to the git commit & repo.</p>
 </div>
 
 <div class="flow-arrow">
@@ -382,15 +382,9 @@ WHERE t0.predicate = '...geosparql#hasGeometry'
 <div class="feature-list mt-6 ml-40">
 
 <div class="feature-row">
-<div class="icon-badge"><carbon:table /></div>
-<h3>Triple pattern</h3>
-<p>One alias of the triples table</p>
-</div>
-
-<div class="feature-row">
 <div class="icon-badge"><carbon:connect /></div>
-<h3>Shared variable</h3>
-<p><code>?geometry</code> becomes the join condition</p>
+<h3>Simpler joins</h3>
+<p><code>?geometry</code> becomes the join condition. Easy to add more predicates for complex relations.</p>
 </div>
 
 <div class="feature-row">
@@ -410,35 +404,116 @@ on the native object_geometry column.
 
 ---
 
-# What we're keeping
+# Publishing and sharing
 
-<div class="grid grid-cols-3 gap-6 mt-12">
+<div class="feature-list mt-6">
 
-<div class="card">
-<span class="num">1</span>
-<div class="icon-badge"><carbon:cube /></div>
-<h3>A graph is a table</h3>
-<p>It needs an open table format and a fast embedded engine — not a graph database.</p>
+<div class="feature-row">
+<div class="icon-badge"><carbon:connect /></div>
+<h3>Composable graphs</h3>
+<p>A standardized triple schema and shared RDF vocabularies let organizations compose their graphs together.</p>
 </div>
 
-<div class="card">
-<span class="num">2</span>
-<div class="icon-badge"><carbon:branch /></div>
-<h3>Git + Iceberg</h3>
-<p>Versioned, diffable, provenance-tracked graphs.</p>
+<div class="feature-row">
+<div class="icon-badge"><carbon:document-multiple-01 /></div>
+<h3>Just files</h3>
+<p>An Iceberg table is an open standard and just a group of files, so it can be hosted on Zenodo, an S3 bucket, or copied locally.</p>
 </div>
 
-<div class="card">
-<span class="num">3</span>
-<div class="icon-badge"><carbon:share /></div>
-<h3>Publish once</h3>
-<p>Query from anywhere: DuckDB, Spark, PyIceberg, or SPARQL.</p>
+<div class="feature-row">
+<div class="icon-badge"><carbon:container-registry /></div>
+<h3>OCI artifacts</h3>
+<p>Push and pull the graph from a registry, just like a Docker image.</p>
+</div>
+
+<div class="feature-row">
+<div class="icon-badge"><carbon:cloud /></div>
+<h3>Free public hosting</h3>
+<p>OCI registries like GitHub Container Registry host public artifacts at no cost.</p>
+</div>
+
+<div class="feature-row">
+<div class="icon-badge"><carbon:recently-viewed /></div>
+<h3>Rollback built in</h3>
+<p>Every published version is tagged, so consumers can pin or roll back to any earlier graph.</p>
 </div>
 
 </div>
 
 <!--
-Three takeaways. If the audience remembers one: the graph is just a table.
+Two ideas. First, because everyone uses the same triple schema and the same
+vocabularies, graphs from different organizations snap together. Second, the
+distribution story: an OCI artifact is the same packaging Docker images use,
+so we get free public registries, versioned tags, and rollback for nothing.
 -->
 
 ---
+hideLogo: true
+class: shot-slide
+---
+
+<div class="oci-slide">
+<div class="oci-frame">
+<img src="/oci.png" class="oci-shot" alt="GitHub Container Registry page for geoconnex-graph showing tagged versions 2026_05_29, 2026_05_14 and 2025_07_07" />
+<div class="oci-overlay">
+<strong>30+ GB graph</strong>
+<span>Free public hosting</span>
+<span>Every tag is a rollback</span>
+</div>
+</div>
+<div class="oci-caption">The Geoconnex graph, published as an OCI artifact · <a href="https://github.com/internetofwater/geoconnex.us/pkgs/container/geoconnex-graph" target="_blank">github.com/internetofwater/geoconnex.us/pkgs/container/geoconnex-graph</a></div>
+</div>
+
+<!--
+This is real: the Geoconnex graph is published as an OCI artifact on GHCR.
+Point at the tag list — 2026_05_29, 2026_05_14, 2025_07_07 — each is a full,
+pullable version of the graph. Over 30 GB, zero hosting bill, and rollback is
+just `pull` with an older tag.
+-->
+
+---
+hideLogo: true
+class: shot-slide
+---
+
+<div class="oci-slide">
+<div class="oci-frame">
+<img src="/demo.png" class="oci-shot" alt="The SAL web interface running a SPARQL query that lists triples added since the previous snapshot, with the results table below" />
+<div class="oci-overlay demo-overlay">
+<strong>Live SAL demo</strong>
+<span>SPARQL, SQL, and a map, in the browser</span>
+<span>Try it yourself</span>
+</div>
+</div>
+<div class="oci-caption">Live demo · <a href="https://sal-demo-779026943077.us-central1.run.app/" target="_blank">sal-demo-779026943077.us-central1.run.app</a></div>
+</div>
+
+<!--
+The demo is live. The screenshot is the "added since previous snapshot" query:
+a SPARQL MINUS against a SERVICE pointing at an older snapshot's endpoint, with
+Show SQL on. Invite people to open the link and run queries themselves.
+-->
+
+---
+layout: center
+class: text-center cover-slide
+---
+
+# Thank you!
+
+<div class="text-3xl font-semibold mt-2">Any questions?</div>
+
+<div class="mt-12 text-xl space-y-3">
+<div><carbon:email class="inline-block align-middle mr-2" /><a href="mailto:cloftus@lincolninst.edu">cloftus@lincolninst.edu</a></div>
+<div><carbon:logo-github class="inline-block align-middle mr-2" /><a href="https://github.com/cgs-earth/sal" target="_blank">github.com/cgs-earth/sal</a></div>
+</div>
+
+<div class="mt-12 opacity-90">
+Colton · Center for Geospatial Solutions (CGS) Lincoln Institute of Land Policy
+</div>
+
+<img src="/cgs-logo-white.png" class="abs-br m-8 h-8" />
+
+<!--
+Leave the email and repo link up during Q&A.
+-->

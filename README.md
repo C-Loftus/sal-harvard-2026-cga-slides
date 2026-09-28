@@ -7,11 +7,6 @@ Geographic Analysis, Oct 2–3, 2026.
 
 Built with [Slidev](https://sli.dev).
 
-## Before presenting
-
-`slides.md` has "Your Name" placeholders on the title and closing slides —
-fill those in before presenting.
-
 ## Running the deck
 
 - `npm install`
