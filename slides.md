@@ -403,21 +403,17 @@ on the native object_geometry column.
 -->
 
 ---
+hideLogo: true
+---
 
 # Publishing and sharing
 
-<div class="feature-list mt-6">
+<div class="feature-list dense mt-6">
 
 <div class="feature-row">
 <div class="icon-badge"><carbon:connect /></div>
 <h3>Composable graphs</h3>
 <p>A standardized triple schema and shared RDF vocabularies let organizations compose their graphs together.</p>
-</div>
-
-<div class="feature-row">
-<div class="icon-badge"><carbon:document-multiple-01 /></div>
-<h3>Just files</h3>
-<p>An Iceberg table is an open standard and just a group of files, so it can be hosted on Zenodo, an S3 bucket, or copied locally.</p>
 </div>
 
 <div class="feature-row">
@@ -440,11 +436,19 @@ on the native object_geometry column.
 
 </div>
 
+<div class="callout-future mt-4">
+<div class="icon-badge"><ph:share-network /></div>
+<div>
+<span class="pill pill-blue">Coming soon</span>
+<h3>sal pub</h3>
+<p>Publish and sync data products through the <strong>fediverse</strong> so data can be announced, followed, and shared across a distributed network of instances, instead of living in one central registry.</p>
+</div>
+</div>
+
 <!--
-Two ideas. First, because everyone uses the same triple schema and the same
-vocabularies, graphs from different organizations snap together. Second, the
-distribution story: an OCI artifact is the same packaging Docker images use,
-so we get free public registries, versioned tags, and rollback for nothing.
+Today's story first — composable graphs, OCI artifacts, free hosting,
+rollback. Then close on where this is going: sal pub, a future component
+that publishes data products onto the fediverse for distributed sharing.
 -->
 
 ---

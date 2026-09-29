@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Regenerates slides-export.pdf on disk before every push, so a fresh export
+# (gitignored, never part of the commit) always matches what's being pushed.
+# A failed export aborts the push.
+set -euo pipefail
+
+echo "==> Exporting slides to slides-export.pdf"
+npm run export

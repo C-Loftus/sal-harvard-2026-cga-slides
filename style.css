@@ -566,6 +566,48 @@ div.slidev-layout.shot-slide {
   color: var(--cgs-green);
 }
 
+/* Denser row spacing, used when a feature-list shares a slide with other
+   content (e.g. a callout above it) and needs to give up some room. */
+.feature-list.dense .feature-row {
+  padding: 0.4rem 0;
+}
+
+.slidev-layout .feature-list.dense h3 {
+  font-size: 1.05rem;
+}
+
+.slidev-layout .feature-list.dense p {
+  font-size: 0.95rem;
+}
+
+/* A forward-looking callout: icon + "coming soon" pill + short pitch,
+   visually distinct from .callout (which flags a settled "key point"). */
+.callout-future {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--cgs-blue) 25%, white);
+  background: color-mix(in srgb, var(--cgs-blue) 6%, white);
+  padding: 1rem 1.3rem;
+  border-radius: 12px;
+}
+
+.callout-future .icon-badge {
+  flex: none;
+}
+
+.slidev-layout .callout-future h3 {
+  margin: 0.35rem 0 0.3rem;
+  font-size: 1.4rem;
+}
+
+.slidev-layout .callout-future p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: var(--cgs-pavement);
+}
+
 .panel {
   background: white;
   border-radius: 12px;

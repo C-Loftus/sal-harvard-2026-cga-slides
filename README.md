@@ -15,6 +15,10 @@ Built with [Slidev](https://sli.dev).
 
 `npm run build` produces a static build in `dist/`; `npm run export` exports to PDF/PNG.
 
+A `pre-push` git hook (`.githooks/`, wired up automatically by `npm install` via the
+`prepare` script) re-runs the export before every push, so `slides-export.pdf`
+(gitignored, local-only) stays current. The push aborts if the export fails.
+
 ## Structure
 
 1. Why graphs are useful for GIS
