@@ -698,3 +698,262 @@ div.slidev-layout.shot-slide {
   font-size: 0.7rem;
   font-weight: 600;
 }
+
+/* ---- Graph backdrop on the title slide (components/GraphMotif.vue) ---- */
+.graph-motif {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.32;
+}
+
+.graph-motif line {
+  stroke: var(--cgs-cream);
+  stroke-width: 1.5;
+}
+
+.graph-motif .region {
+  fill: rgba(254, 252, 245, 0.06);
+  stroke: var(--cgs-cream);
+  stroke-width: 1.2;
+  stroke-dasharray: 5 6;
+}
+
+.graph-motif .resource {
+  fill: var(--cgs-cream);
+}
+
+.graph-motif .literal {
+  fill: var(--cgs-blue);
+  stroke: var(--cgs-cream);
+  stroke-width: 1.5;
+}
+
+.graph-motif .place {
+  fill: var(--cgs-yellow);
+}
+
+/* ---- Iceberg anatomy slide: catalog → metadata → data files ---- */
+.ice-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.ice-header img {
+  flex: none;
+  width: 3.8rem;
+  height: 3.8rem;
+}
+
+.flow.ice-flow {
+  grid-template-columns: 0.85fr 5.5rem 1.1fr 5.5rem 1.45fr;
+  align-items: stretch;
+}
+
+.ice-flow .flow-arrow {
+  justify-content: center;
+}
+
+.ice-snapshots,
+.ice-files {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem;
+  margin-top: 0.6rem;
+}
+
+.ice-snapshots span,
+.ice-files span {
+  position: relative;
+  padding: 0.15em 0.55em;
+  border-radius: 5px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--cgs-blue);
+  background: var(--cgs-cumulus);
+}
+
+.ice-snapshots span.current {
+  color: white;
+  background: var(--cgs-blue);
+}
+
+.ice-files {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+}
+
+/* Deletion vector: a small yellow tag clipped to one Parquet file */
+.ice-files span.has-dv::after,
+.ice-dv-legend i {
+  content: '';
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 2px;
+  background: var(--cgs-yellow);
+  box-shadow: 0 0 0 1.5px white;
+}
+
+.ice-files span.has-dv::after {
+  position: absolute;
+  top: -0.3rem;
+  right: -0.3rem;
+}
+
+.slidev-layout .flow-node p.ice-dv-legend {
+  margin-top: 0.6rem;
+  text-align: left;
+}
+
+.ice-dv-legend i {
+  display: inline-block;
+  margin-right: 0.35rem;
+  vertical-align: -0.05rem;
+}
+
+/* ---- About me slide ---- */
+.about {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  align-items: center;
+  column-gap: 3rem;
+}
+
+/* Gradient ring around the portrait */
+.about-photo {
+  padding: 5px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cgs-blue), var(--cgs-green));
+  box-shadow: 0 6px 24px rgba(72, 83, 91, 0.22);
+}
+
+.about-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center 25%;
+  border-radius: 50%;
+}
+
+.about-name {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--cgs-pavement);
+}
+
+.about-role {
+  margin-top: 0.2rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--cgs-green);
+}
+
+.slidev-layout .about .feature-list.solo h3 {
+  font-size: 1.25rem;
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.45rem;
+}
+
+.about-tags span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.2em 0.75em 0.2em 0.35em;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cgs-blue);
+  background: var(--cgs-cumulus);
+}
+
+.about-tags img {
+  height: 1.35em;
+  width: auto;
+}
+
+/* Agency logos, each on a white card so the brand colors read cleanly */
+.about-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.about-logos > img,
+.about-logos .agency-mark {
+  height: 2.9rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 1px 6px rgba(72, 83, 91, 0.12);
+}
+
+/* Emblem-only logos get their name written beside them */
+.about-logos .agency-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.about-logos .agency-mark img {
+  height: 100%;
+}
+
+.about-logos .wmo {
+  color: #0055a5;
+}
+
+.about-logos .usbr {
+  color: #1c3f5a;
+}
+
+.about-logos .more {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--cgs-slate);
+}
+
+/* Groups the committer tags under a "Go implementations" label that sits
+   on the box border, fieldset-style. Go's brand cyan marks the language. */
+.go-box {
+  position: relative;
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.65rem 0.6rem 0.5rem;
+  border: 1.5px solid color-mix(in srgb, #00add8 55%, white);
+  border-radius: 10px;
+}
+
+.go-box-label {
+  position: absolute;
+  top: -0.65em;
+  left: 0.6rem;
+  padding: 0 0.4em;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #00add8;
+  background: var(--cgs-cream);
+}
+
+.go-box .about-tags {
+  margin-top: 0;
+}

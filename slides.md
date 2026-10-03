@@ -16,13 +16,15 @@ transition: slide-left
 duration: 12min
 ---
 
+<GraphMotif />
+
 # SAL
 <p class="text-2xl font-semibold tracking-wide" style="opacity: 0.6">Semantic Accessibility Layer</p>
 
 ### A Build System and Query Engine for Geospatial Knowledge Graphs
 
 <div class="mt-12 text-lg opacity-95">
-Colton · Center for Geospatial Solutions (CGS) Lincoln Institute of Land Policy
+Colton Loftus · Center for Geospatial Solutions (CGS) Lincoln Institute of Land Policy
 </div>
 <div class="mt-2 opacity-80">
 2026 CGA Conference · Harvard Center for Geographic Analysis
@@ -34,6 +36,70 @@ Colton · Center for Geospatial Solutions (CGS) Lincoln Institute of Land Policy
 Open on who I am, then the one-sentence hook: we built a linked-data / SPARQL
 graph without running a triple store — it lives as an Iceberg table. That's
 the whole talk.
+-->
+
+---
+
+# About me
+
+<div class="about mt-6">
+
+<div class="about-photo">
+<img src="/colton.webp" alt="Portrait of Colton Loftus" />
+</div>
+
+<div>
+<div class="about-name">Colton Loftus</div>
+<div class="about-role">Software Engineer · Center for Geospatial Solutions</div>
+
+<div class="feature-list solo mt-5">
+
+<div class="feature-row">
+<div class="icon-badge"><carbon:earth-filled /></div>
+<div>
+<h3>Large-scale geospatial data systems</h3>
+<p>My focus is designing and building data infrastructure for geoscience use cases.</p>
+</div>
+</div>
+
+<div class="feature-row">
+<div class="icon-badge"><carbon:code /></div>
+<div>
+<h3>Open-source committer</h3>
+<div class="go-box">
+<span class="go-box-label">Go implementations</span>
+<div class="about-tags">
+<span><img src="/iceberg.webp" alt="" />Iceberg</span>
+<span><img src="/logos/arrow.svg" alt="" />Arrow</span>
+<span><img src="/logos/parquet.svg" alt="" />Parquet</span>
+<span><img src="/logos/geoarrow.svg" alt="" />GeoArrow</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="feature-row">
+<div class="icon-badge"><carbon:partnership /></div>
+<div>
+<h3>Building with federal &amp; international agencies</h3>
+<div class="about-logos">
+<img src="/logos/usgs.svg" alt="USGS" />
+<span class="agency-mark wmo"><img src="/logos/wmo.png" alt="" />WMO</span>
+<span class="agency-mark usbr"><img src="/logos/usbr.jpg" alt="" />Reclamation</span>
+<span class="more">and more</span>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<!--
+Keep this to thirty seconds. The committer work is why SAL is built on
+Iceberg and Arrow in Go; the agency work is where the real-world data and
+requirements come from.
 -->
 
 ---
@@ -201,6 +267,67 @@ The idea — linked, semantic data — was right; the infrastructure wasn't.
 Each of these answers one of the three problems: open format vs lock-in,
 many engines vs the welded engine, files in a bucket vs standing up a server.
 Time travel and native geometry are bonuses the old stores never had.
+-->
+
+---
+
+<div class="ice-header">
+
+# Under the hood: an Iceberg table is just files
+
+<img src="/iceberg.webp" alt="Apache Iceberg logo" />
+</div>
+
+<div class="flow ice-flow mt-4">
+
+<div class="flow-node">
+<div class="icon-badge"><carbon:catalog /></div>
+<h3>Catalog</h3>
+<p>Maps each table name to its current metadata file</p>
+</div>
+
+<div class="flow-arrow">
+<span>points to</span>
+<div class="line"></div>
+</div>
+
+<div class="flow-node">
+<div class="icon-badge"><carbon:document-multiple-01 /></div>
+<h3>Metadata</h3>
+<p>Schema, snapshot history, and manifests listing each snapshot's files</p>
+<div class="ice-snapshots">
+<span>v1</span><span>v2</span><span class="current">v3 · current</span>
+</div>
+</div>
+
+<div class="flow-arrow">
+<span>lists</span>
+<div class="line"></div>
+</div>
+
+<div class="flow-node">
+<div class="icon-badge"><carbon:data-1 /></div>
+<h3>Data files</h3>
+<p>Immutable Parquet, written once</p>
+<div class="ice-files">
+<span>.parquet</span><span>.parquet</span><span class="has-dv">.parquet</span>
+<span>.parquet</span><span>.parquet</span><span>.parquet</span>
+</div>
+<p class="ice-dv-legend"><i></i><strong>Deletion vector:</strong> a bitmap marking deleted rows, so a delete never rewrites the Parquet file</p>
+</div>
+
+</div>
+
+<div class="callout mt-6">
+<strong>Key takeaway:</strong> static files in object storage are far cheaper to host and maintain than a running database server.
+</div>
+
+<!--
+Walk it right to left. The data is plain Parquet files that are never edited.
+A delete just writes a small deletion vector next to the file. Metadata
+records which files make up each snapshot, which is what gives us time travel.
+The catalog is only a pointer to the current metadata file.
+No server holds the data, so hosting is just storage.
 -->
 
 ---
