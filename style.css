@@ -675,3 +675,25 @@ div.slidev-layout.shot-slide {
   height: 1.8rem;
   opacity: 0.85;
 }
+
+/* QR code on the closing slide. The white card keeps the code scannable
+   against the gradient background. */
+.slides-qr {
+  background: #fff;
+  border-radius: 10px;
+  padding: 0.4rem 0.4rem 0.3rem;
+  box-shadow: 0 2px 12px rgba(72, 83, 91, 0.25);
+  text-align: center;
+}
+
+.slides-qr img {
+  display: block;
+  width: 7.5rem;
+  height: 7.5rem;
+}
+
+.slides-qr div {
+  color: var(--cgs-blue);
+  font-size: 0.7rem;
+  font-weight: 600;
+}

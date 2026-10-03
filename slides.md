@@ -516,8 +516,13 @@ class: text-center cover-slide
 Colton · Center for Geospatial Solutions (CGS) Lincoln Institute of Land Policy
 </div>
 
+<div class="slides-qr abs-bl m-8">
+<img src="/qr-code.png" alt="QR code linking to these slides online" />
+<div>Scan for the slides</div>
+</div>
+
 <img src="/cgs-logo-white.png" class="abs-br m-8 h-8" />
 
 <!--
-Leave the email and repo link up during Q&A.
+Leave the email, repo link and slides QR code up during Q&A.
 -->
