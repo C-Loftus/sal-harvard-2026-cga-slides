@@ -507,18 +507,18 @@ class: text-center cover-slide
 
 <div class="text-3xl font-semibold mt-2">Any questions?</div>
 
-<div class="mt-12 text-xl space-y-3">
+<div class="slides-qr mt-6">
+<img src="/qr-code.png" alt="QR code linking to these slides online" />
+<div>Scan for the slides</div>
+</div>
+
+<div class="mt-6 text-xl space-y-3">
 <div><carbon:email class="inline-block align-middle mr-2" /><a href="mailto:cloftus@lincolninst.edu">cloftus@lincolninst.edu</a></div>
 <div><carbon:logo-github class="inline-block align-middle mr-2" /><a href="https://github.com/cgs-earth/sal" target="_blank">github.com/cgs-earth/sal</a></div>
 </div>
 
-<div class="mt-12 opacity-90">
+<div class="mt-6 opacity-90">
 Colton · Center for Geospatial Solutions (CGS) Lincoln Institute of Land Policy
-</div>
-
-<div class="slides-qr abs-bl m-8">
-<img src="/qr-code.png" alt="QR code linking to these slides online" />
-<div>Scan for the slides</div>
 </div>
 
 <img src="/cgs-logo-white.png" class="abs-br m-8 h-8" />
